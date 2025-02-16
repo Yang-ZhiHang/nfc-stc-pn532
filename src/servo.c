@@ -1,4 +1,4 @@
-#include "Servo.h"
+#include "servo.h"
 #include <REGX52.H>
 #include "Delay.h"
 
