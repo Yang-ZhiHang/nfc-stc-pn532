@@ -28,8 +28,8 @@ void main() {
     led_flash();
     UART_Init();  // 初始化串口
     NFC_Init();   // 初始化NFC模块
-    Servo_SetAngleTime(0, 1000);
-    Servo_SetAngleTime(90, 1000);
+    Servo_SetAngleTime(45, 1000);
+    Servo_SetAngleTime(67, 1000);
     Servo_Init();
     led_flash();
     led_init();
@@ -47,10 +47,9 @@ void main() {
             if (uid[0] == NFC_SPECIAL_CARD_UID[0] && uid[1] == NFC_SPECIAL_CARD_UID[1] &&
                 uid[2] == NFC_SPECIAL_CARD_UID[2] && uid[3] == NFC_SPECIAL_CARD_UID[3]) {
                 DETECTED_TRUE_CARD = 1;
-                BuzzerTime(200, 1000);
-                Servo_SetAngleTime(45, 500);
-                Delay(2000);
-								Servo_SetAngleTime(180, 500);
+                BuzzerTime(100, 1000);
+                Servo_SetAngleTime(90, 3000);
+				Servo_SetAngleTime(0, 1000);
             }
             // 检测到其他卡片
             else {

@@ -22,6 +22,18 @@ void Delay1000us()  //@11.0592MHz
             ;
     } while (--i);
 }
+void Delay1240us()		//@11.0592MHz
+{
+	unsigned char i, j;
+
+	i = 3;
+	j = 53;
+	do
+	{
+		while (--j);
+	} while (--i);
+}
+
 void Delay1500us()  //@11.0592MHz
 {
     unsigned char i, j;
@@ -90,6 +102,19 @@ void Delay18500us()  //@11.0592MHz
             ;
     } while (--i);
 }
+void Delay18760us()		//@11.0592MHz
+{
+	unsigned char i, j;
+
+	_nop_();
+	i = 34;
+	j = 159;
+	do
+	{
+		while (--j);
+	} while (--i);
+}
+
 void Delay19000us()  //@11.0592MHz
 {
     unsigned char i, j;
