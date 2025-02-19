@@ -1,5 +1,6 @@
 #include "buzzer.h"
 #include "delay.h"
+
 // 定义频率范围常量
 #define MIN_FREQUENCY 1
 #define MAX_FREQUENCY 500

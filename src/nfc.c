@@ -1,9 +1,8 @@
 #include "nfc.h"
-#include "uart.h"
 #include "delay.h"
+#include "uart.h"
 
-
-// 唤醒指令（Wake Up）
+// 唤醒指令
 const unsigned char NFC_WAKE_UP[] = {
     0x55, 0x55,                                                                          // 前导码
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // 同步码
@@ -16,12 +15,13 @@ const unsigned char NFC_WAKE_UP[] = {
 
 // 读取UID指令
 const unsigned char NFC_READ_UID[] = {
-    0x00, 0x00, 0xFF,  // 包头
+    0x00, 0x00, 0xFF,  // 帧头
     0x04,              // 长度
-    0xFC,              // 校验和
-    0xD4, 0x4A,        // 命令码（InListPassiveTarget）
+    0xFC,              // 长度校验和
+    0xD4, 0x4A,        // 命令码
     0x01, 0x00,        // 参数
-    0xE1, 0x00         // 后缀
+    0xE1,              // 数据校验和
+    0x00               // 帧尾
 };
 
 // 初始化NFC模块
@@ -33,6 +33,7 @@ void NFC_Init() {
         UART_SendByte(NFC_WAKE_UP[i]);
     }
 
+    // 等待响应
     Delay125ms();
 }
 
@@ -65,7 +66,7 @@ unsigned char NFC_ReadUID(unsigned char* uid) {
     } else {
         length = UART_ReceiveByte();                // 读取长度
         if (length >= 7) {                          // 确保响应中包含UID
-            for (i = 0; i < length - 4 + 1; i++) {  // 跳过其他数据 + LCS 长度校验位
+            for (i = 0; i < length - 4 + 1; i++) {  // 跳过其他数据 + LCS长度校验位
                 UART_ReceiveByte();
             }
             // 读取4字节UID
@@ -73,6 +74,7 @@ unsigned char NFC_ReadUID(unsigned char* uid) {
                 uid[i] = UART_ReceiveByte();
             }
 
+            // 跳过响应包尾
             UART_ReceiveByte();
             UART_ReceiveByte();
 

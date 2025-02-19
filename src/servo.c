@@ -4,7 +4,7 @@
 
 sbit SERVO = P1 ^ 4;  // 舵机信号线连接到P1.4
 
-// 这里涉及到一个知识点：驱动舵机需要PWM信号，0.5-2.5ms 表示转动 0-180°
+// 驱动舵机需要 PWM 信号，周期为 20ms，周期内高电平 0.5-2.5ms 表示转动 0-180°
 void Servo_SetAngleTime(unsigned char angle, unsigned int duration) {
     unsigned int pwm_count = duration / 20;
     if (angle == 0) {

@@ -1,5 +1,5 @@
-#include <REGX52.H>
 #include "uart.h"
+#include <REGX52.H>
 
 // UART初始化，波特率115200
 void UART_Init(void) {
@@ -22,21 +22,16 @@ void UART_Init(void) {
 // 发送一个字节
 void UART_SendByte(unsigned char dat) {
     SBUF = dat;
-    while (!TI)
-        ;    // 等待发送完成
-    TI = 0;  // 清除发送完成标志
+    while (!TI);    // 等待发送完成
+    TI = 0;         // 清除发送完成标志
 }
 
 // 接收一个字节
 unsigned char UART_ReceiveByte(void) {
     unsigned char dat;
-    // NFC_DETECTING = 1;
-    // Delay125ms();
-    while (!RI)
-        ;    // 等待接收完成
-    RI = 0;  // 清除接收完成标志
+    while (!RI);    // 等待接收完成
+    RI = 0;         // 清除接收完成标志
     dat = SBUF;
-    // NFC_DETECTING = 0;
     return dat;
 }
 
