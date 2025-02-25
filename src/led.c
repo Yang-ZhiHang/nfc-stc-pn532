@@ -9,7 +9,6 @@ void led_init() {
 
 void led_flash() {
     unsigned char i;
-
     for (i = 0; i < 20; i++) {
         DETECTED_CARD = 1;
         DETECTED_TRUE_CARD = 1;

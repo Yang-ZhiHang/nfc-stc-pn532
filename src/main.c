@@ -1,7 +1,7 @@
 /**
  * 开发环境 Keil5
  * 烧录程序 STC-ISP
- * 单片机 STC89C52 35I-PDIP40 1852HVG426.X90C
+ * 单片机 STC89C52-35I
  * 外接晶振 11.0592MHz
  * 波特率 115200
  * NFC模块 PN532 (NFC Module V3) HSU 协议
@@ -24,22 +24,23 @@ void main() {
     // 正确卡片的UID
     const unsigned char NFC_SPECIAL_CARD_UID[] = {0x7d, 0xd4, 0xb5, 0x01};
 
-    led_flash();  // LED自检
 
-    // ===== 舵机自检 start =====
-    Servo_SetAngleTime(45, 1000);
-    Servo_SetAngleTime(67, 1000);
-    // ===== 舵机自检 end =======
+    // ===== 自检 start =====
+    led_flash();  // LED自检
+    Servo_SetAngleTime(90, 3000); // 舵机自检
+    // ===== 自检 end =======
     
+    // ===== 初始化 start =====
     Servo_Init();  // 初始化舵机（自检后归位）
     led_init();    // 初始化LED
     UART_Init();   // 初始化串口
     NFC_Init();    // 初始化NFC模块
+    // ===== 初始化 end =======
 
     while (1) {
         led_init();  // 状态重置
-        WORKING = 1;
-        status = NFC_ReadUID(uid);
+        WORKING = 1;  // 工作指示灯
+        status = NFC_ReadUID(uid);  // 读取状态
         Delay1000ms();
         if (status) {
             WORKING = 0;

@@ -1,7 +1,9 @@
 #include "delay.h"
 #include <INTRINS.H>
 
-void Delay500us()  //@11.0592MHz
+// 均仅适用 @11.0592MHz
+
+void Delay500us()
 {
     unsigned char i;
 
@@ -10,7 +12,7 @@ void Delay500us()  //@11.0592MHz
     while (--i)
         ;
 }
-void Delay1000us()  //@11.0592MHz
+void Delay1000us()
 {
     unsigned char i, j;
 
@@ -22,7 +24,7 @@ void Delay1000us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay1240us()		//@11.0592MHz
+void Delay1240us()
 {
 	unsigned char i, j;
 
@@ -34,7 +36,7 @@ void Delay1240us()		//@11.0592MHz
 	} while (--i);
 }
 
-void Delay1500us()  //@11.0592MHz
+void Delay1500us()
 {
     unsigned char i, j;
 
@@ -45,7 +47,7 @@ void Delay1500us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay2000us()  //@11.0592MHz
+void Delay2000us()
 {
     unsigned char i, j;
 
@@ -57,7 +59,7 @@ void Delay2000us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay2500us()  //@11.0592MHz
+void Delay2500us()
 {
     unsigned char i, j;
 
@@ -68,7 +70,7 @@ void Delay2500us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay17500us()  //@11.0592MHz
+void Delay17500us()
 {
     unsigned char i, j;
 
@@ -79,7 +81,7 @@ void Delay17500us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay18000us()  //@11.0592MHz
+void Delay18000us()
 {
     unsigned char i, j;
 
@@ -90,7 +92,7 @@ void Delay18000us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay18500us()  //@11.0592MHz
+void Delay18500us()
 {
     unsigned char i, j;
 
@@ -102,7 +104,7 @@ void Delay18500us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay18760us()		//@11.0592MHz
+void Delay18760us()
 {
 	unsigned char i, j;
 
@@ -115,7 +117,7 @@ void Delay18760us()		//@11.0592MHz
 	} while (--i);
 }
 
-void Delay19000us()  //@11.0592MHz
+void Delay19000us()
 {
     unsigned char i, j;
 
@@ -126,7 +128,7 @@ void Delay19000us()  //@11.0592MHz
             ;
     } while (--i);
 }
-void Delay19500us()  //@11.0592MHz
+void Delay19500us()
 {
     unsigned char i, j;
 
@@ -139,7 +141,7 @@ void Delay19500us()  //@11.0592MHz
     } while (--i);
 }
 
-void Delay(unsigned int ms)  //@11.0592MHz
+void Delay(unsigned int ms)
 {
     unsigned char i, j;
 
@@ -155,7 +157,7 @@ void Delay(unsigned int ms)  //@11.0592MHz
     }
 }
 
-void Delay50ms()  //@11.0592MHz
+void Delay50ms()
 {
     unsigned char i, j;
 
@@ -167,7 +169,7 @@ void Delay50ms()  //@11.0592MHz
     } while (--i);
 }
 
-void Delay125ms()  //@11.0592MHz
+void Delay125ms()
 {
     unsigned char i, j;
 
@@ -179,7 +181,7 @@ void Delay125ms()  //@11.0592MHz
     } while (--i);
 }
 
-void Delay1000ms()  //@11.0592MHz
+void Delay1000ms()
 {
     unsigned char i, j, k;
 
@@ -195,7 +197,7 @@ void Delay1000ms()  //@11.0592MHz
     } while (--i);
 }
 
-void Delay2000ms()		//@11.0592MHz
+void Delay2000ms()
 {
 	unsigned char i, j, k;
 

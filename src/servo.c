@@ -23,14 +23,6 @@ void Servo_SetAngleTime(unsigned char angle, unsigned int duration) {
             Delay19000us();
             --pwm_count;
         }
-    } else if (angle == 67) {
-        while (pwm_count) {
-            SERVO = 1;
-            Delay1240us();
-            SERVO = 0;
-            Delay18760us();
-            --pwm_count;
-        }
     } else if (angle == 90) {
         while (pwm_count) {
             SERVO = 1;

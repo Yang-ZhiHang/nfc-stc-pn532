@@ -1,7 +1,6 @@
 #include "uart.h"
 #include <REGX52.H>
 
-// UART初始化，波特率115200
 void UART_Init(void) {
     SCON = 0x50;  // 8位数据,可变波特率
 
@@ -19,14 +18,12 @@ void UART_Init(void) {
     RI = 0;
 }
 
-// 发送一个字节
 void UART_SendByte(unsigned char dat) {
     SBUF = dat;
     while (!TI);    // 等待发送完成
     TI = 0;         // 清除发送完成标志
 }
 
-// 接收一个字节
 unsigned char UART_ReceiveByte(void) {
     unsigned char dat;
     while (!RI);    // 等待接收完成

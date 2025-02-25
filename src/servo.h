@@ -3,7 +3,7 @@
 
 /**
  * @brief  持续输出特定角度的PWM信号
- * @param  angle: 角度（0/90/180）
+ * @param  angle: 角度（0/45/90/135/180）
  * @param  duration: 持续时间，单位ms
  */
 void Servo_SetAngleTime(unsigned char angle, unsigned int duration);

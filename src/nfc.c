@@ -24,7 +24,6 @@ const unsigned char NFC_READ_UID[] = {
     0x00               // 帧尾
 };
 
-// 初始化NFC模块
 void NFC_Init() {
     unsigned char i;
 
@@ -37,7 +36,6 @@ void NFC_Init() {
     Delay125ms();
 }
 
-// 读取卡片UID
 unsigned char NFC_ReadUID(unsigned char* uid) {
     unsigned char i;
     unsigned char length;
