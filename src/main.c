@@ -52,7 +52,7 @@ void main() {
     SystemState current_state = STATE_IDLE;
 
     // ===== 自检 start =====
-    // led_flash();  // LED自检
+    led_flash();  // LED 自检
     // Servo_SetAngleTime(90, 3000); // 舵机自检
     // ===== 自检 end =======
 
@@ -67,16 +67,17 @@ void main() {
         switch (current_state) {
             case STATE_IDLE:
                 WORKING = 1;
+                DETECTED_CARD = 0;
+                DETECTED_TRUE_CARD = 0;
+
+                // 此处阻塞等待读卡
                 status = nfc_read_uid(uid);
                 if (status) {
                     WORKING = 0;
                     DETECTED_CARD = 1;
                     current_state = STATE_READING;
-                } else {
-                    DETECTED_CARD = 0;
-                    DETECTED_TRUE_CARD = 0;
                 }
-                delay_1000ms();
+                delay_125ms();
                 break;
 
             case STATE_READING:
