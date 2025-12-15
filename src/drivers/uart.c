@@ -1,7 +1,7 @@
-#include "uart.h"
+#include "drivers/uart.h"
 #include <REGX52.H>
 
-void UART_Init(void) {
+void uart_init(void) {
     SCON = 0x50;  // 8位数据,可变波特率
 
     // 使用定时器2作为波特率发生器
@@ -18,13 +18,13 @@ void UART_Init(void) {
     RI = 0;
 }
 
-void UART_SendByte(unsigned char dat) {
+void uart_send_byte(unsigned char dat) {
     SBUF = dat;
     while (!TI);    // 等待发送完成
     TI = 0;         // 清除发送完成标志
 }
 
-unsigned char UART_ReceiveByte(void) {
+unsigned char uart_receive_byte(void) {
     unsigned char dat;
     while (!RI);    // 等待接收完成
     RI = 0;         // 清除接收完成标志
@@ -32,7 +32,7 @@ unsigned char UART_ReceiveByte(void) {
     return dat;
 }
 
-void UART_ClearBuffer(void) {
+void uart_clear_buffer(void) {
     while (RI) {
         RI = 0;
         SBUF;  // 读取并丢弃数据
