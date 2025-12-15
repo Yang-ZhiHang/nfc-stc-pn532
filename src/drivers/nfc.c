@@ -62,7 +62,7 @@ unsigned char nfc_read_uid(unsigned char* uid) {
     if (header[0] != 0x00 || header[1] != 0x00 || header[2] != 0xFF) {
         return 0;
     } else {
-        length = uart_receive_byte();                // 读取长度
+        length = uart_receive_byte();               // 读取长度
         if (length >= 7) {                          // 确保响应中包含UID
             for (i = 0; i < length - 4 + 1; i++) {  // 跳过其他数据 + LCS长度校验位
                 uart_receive_byte();
