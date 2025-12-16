@@ -1,18 +1,43 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "nfc-lock_software-driver",
             "includePath": [
-                "${workspaceFolder}/include",
-                "${workspaceFolder}/include/drivers",
-                "${workspaceFolder}/include/utils",
-                "D:/app/Keil5/C51/INC",
-                "D:/app/Keil5/C51/INC/Atmel"
+                "d:\\code\\dev\\others\\intelli-308r\\include",
+                "d:\\code\\dev\\others\\intelli-308r\\include\\drivers",
+                "d:\\code\\dev\\others\\intelli-308r\\include\\utils",
+                "D:\\app\\Keil5\\C51\\INC\\Atmel",
+                "D:\\app\\Keil5\\C51\\INC",
+                "d:\\code\\dev\\others\\intelli-308r\\src",
+                "d:\\code\\dev\\others\\intelli-308r\\src\\drivers",
+                "d:\\code\\dev\\others\\intelli-308r\\src\\utils",
+                "${default}"
             ],
-            "defines": [],
-            "compilerPath": "D:/app/Keil5/C51/BIN/C51.EXE",
-            "cStandard": "c99",
-            "cppStandard": "c++17"
+            "defines": [
+                "__C51__",
+                "__VSCODE_C51__",
+                "reentrant=",
+                "compact=",
+                "small=",
+                "large=",
+                "data=",
+                "idata=",
+                "pdata=",
+                "bdata=",
+                "xdata=",
+                "code=",
+                "bit=char",
+                "sbit=char",
+                "sfr=char",
+                "sfr16=int",
+                "sfr32=int",
+                "interrupt=",
+                "using=",
+                "_at_=",
+                "_priority_=",
+                "_task_="
+            ],
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4

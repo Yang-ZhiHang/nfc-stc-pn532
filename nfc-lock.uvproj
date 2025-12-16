@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>nfc-lock-project</TargetName>
+      <TargetName>software-driver</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
@@ -311,7 +311,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\include;.\include\drivers;.\include\utils</IncludePath>
+              <IncludePath>.\include;.\include\drivers;.\include\utils;D:\app\Keil5\C51\INC\Atmel</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>

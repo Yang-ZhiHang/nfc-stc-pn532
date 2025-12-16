@@ -1,10 +1,10 @@
 /**
  * 开发环境 Keil5
  * 烧录程序 STC-ISP
- * 单片机 STC89C52-35I
+ * 单片机   STC89C52-35I
  * 外接晶振 11.0592MHz
- * 波特率 115200
- * NFC模块 PN532 (NFC Module V3) HSU 协议
+ * 波特率   115200
+ * NFC模块  PN532 (NFC Module V3) HSU 协议
  */
 
 #include "drivers/buzzer.h"
@@ -14,33 +14,28 @@
 #include "drivers/uart.h"
 #include "utils/delay.h"
 
-typedef enum { STATE_IDLE, STATE_READING, STATE_SUCCESS, STATE_FAIL } SystemState;
+typedef enum { STATE_IDLE, STATE_READING, STATE_SUCCESS, STATE_FAIL, STATE_SERVO_TEST } SystemState;
+const unsigned char NFC_ACCESS_CARD_UID[] = {0x7d, 0xd4, 0xb5, 0x01};
 
-unsigned char status = 0;
-unsigned char uid[4];
-unsigned char i;
-
-// 正确卡片的UID
-const unsigned char NFC_SPECIAL_CARD_UID[] = {0x7d, 0xd4, 0xb5, 0x01};
-
-// 检查 UID 是否匹配
 unsigned char check_uid_match(unsigned char* uid1, const unsigned char* uid2, unsigned char len) {
-    unsigned char j;
-    for (j = 0; j < len; j++) {
-        if (uid1[j] != uid2[j])
+    unsigned char i;
+    for (i = 0; i < len; i++) {
+        if (uid1[i] != uid2[i])
             return 0;
     }
     return 1;
 }
 
 void handle_success() {
+    unsigned char i;
     DETECTED_TRUE_CARD = 1;
-    buzzer_time(100, 1000);
-    servo_set_angle_time(90, 3000);
-    servo_set_angle_time(0, 1000);
+    for (i = 0; i < 2; i++) buzzer_time(100, 500);
+    servo_set_angle_time(SERVO_ANGLE_90, 3000);
+    servo_set_angle_time(SERVO_ANGLE_0, 1000);
 }
 
 void handle_fail() {
+    unsigned char i;
     DETECTED_TRUE_CARD = 0;
     for (i = 0; i < 3; i++) {
         buzzer_time(50, 1000);
@@ -50,10 +45,12 @@ void handle_fail() {
 
 void main() {
     SystemState current_state = STATE_IDLE;
+    unsigned char status = 0;
+    unsigned char uid[4];
 
     // ===== 自检 start =====
     led_flash();  // LED 自检
-    // Servo_SetAngleTime(90, 3000); // 舵机自检
+    // servo_set_angle_time(90, 3000); // 舵机自检
     // ===== 自检 end =======
 
     // ===== 初始化 start =====
@@ -77,11 +74,10 @@ void main() {
                     DETECTED_CARD = 1;
                     current_state = STATE_READING;
                 }
-                delay_125ms();
                 break;
 
             case STATE_READING:
-                if (check_uid_match(uid, NFC_SPECIAL_CARD_UID, 4)) {
+                if (check_uid_match(uid, NFC_ACCESS_CARD_UID, 4)) {
                     current_state = STATE_SUCCESS;
                 } else {
                     current_state = STATE_FAIL;

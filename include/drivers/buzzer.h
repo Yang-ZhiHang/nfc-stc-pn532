@@ -2,6 +2,7 @@
 #define BUZZER_H
 
 #include <REGX52.H>
+#include "intelli.h"
 
 // 蜂鸣器引脚定义
 sbit BUZZER = P1 ^ 3;

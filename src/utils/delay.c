@@ -24,17 +24,6 @@ void delay_1000us(void) {
     } while (--i);
 }
 
-void delay_1240us(void) {
-    unsigned char i, j;
-
-    i = 3;
-    j = 53;
-    do {
-        while (--j)
-            ;
-    } while (--i);
-}
-
 void delay_1500us(void) {
     unsigned char i, j;
 
@@ -97,18 +86,6 @@ void delay_18500us(void) {
     _nop_();
     i = 34;
     j = 39;
-    do {
-        while (--j)
-            ;
-    } while (--i);
-}
-
-void delay_18760us(void) {
-    unsigned char i, j;
-
-    _nop_();
-    i = 34;
-    j = 159;
     do {
         while (--j)
             ;
@@ -182,21 +159,6 @@ void delay_1000ms(void) {
     i = 8;
     j = 1;
     k = 243;
-    do {
-        do {
-            while (--k)
-                ;
-        } while (--j);
-    } while (--i);
-}
-
-void delay_2000ms(void) {
-    unsigned char i, j, k;
-
-    _nop_();
-    i = 15;
-    j = 2;
-    k = 235;
     do {
         do {
             while (--k)
